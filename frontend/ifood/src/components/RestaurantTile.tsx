@@ -1,5 +1,8 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
+
+import * as marketFunctions from "../store/actions/market";
 
 interface RestaurantTileProps {
   name: string;
@@ -11,9 +14,12 @@ interface RestaurantTileProps {
 const RestaurantTile = (props: RestaurantTileProps) => {
   const { name, rating, deliveryTime } = props;
   const histoy = useHistory();
+  const dispatch = useDispatch();
 
   const clickHandler = () => {
+    dispatch(marketFunctions.chooseMarket(props));
     histoy.push(`/restaurante/${props.id}`);
+    
   };
 
   return (
