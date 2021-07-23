@@ -1,15 +1,23 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 
 interface RestaurantTileProps {
   name: string;
   rating: number;
   deliveryTime: number;
+  id: number;
 }
 
 const RestaurantTile = (props: RestaurantTileProps) => {
   const { name, rating, deliveryTime } = props;
+  const histoy = useHistory();
+
+  const clickHandler = () => {
+    histoy.push(`/restaurante/${props.id}`);
+  };
+
   return (
-    <div className="m-4 my-6 flex w-full">
+    <div className="m-4 my-6 flex w-full" onClick={clickHandler}>
       <div className="m-2 h-10 w-12 rounded-full bg-gray-300"></div>
       <div className="flex flex-col w-full">
         <div>{name}</div>

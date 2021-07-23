@@ -2,7 +2,9 @@ import React from "react";
 
 import Layout from "../../components/Layout";
 
-const Restaurant = () => {
+const Restaurant = (props:any) => {
+  const {id} = props.match.params
+  console.log(id)
   return (
     <>
       <Layout>

@@ -21,7 +21,7 @@ const Home = () => {
               alt="pesquisar"
               src="/images/search.png"
               className="h-5 pr-2"
-            />{" "}
+            />
             <input
               className="w-4/5 bg-gray-300"
               type="text"
@@ -36,6 +36,7 @@ const Home = () => {
                 name={item.name}
                 rating={item.rating}
                 deliveryTime={item.deliveryTime}
+                id={item.id}
               />
             ))}
           </section>

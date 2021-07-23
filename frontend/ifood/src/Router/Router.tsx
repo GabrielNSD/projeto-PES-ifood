@@ -1,7 +1,8 @@
 import React from "react";
-import { BrowserRouter as Router, Link, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
 import Home from "../pages/Home";
+import Restaurant from "../pages/Restaurant";
 
 const RouterComponent = () => {
   return (
@@ -9,6 +10,10 @@ const RouterComponent = () => {
       <Route exact path="/">
         <Home />
       </Route>
+      <Route
+        path="/restaurante/:id"
+        render={(props: any) => <Restaurant {...props} />}
+      />
     </Router>
   );
 };
