@@ -15,13 +15,17 @@ const Basket = () => {
   const taxaDeEntrega = 5;
 
   useEffect(() => {
+    //chama api
+    //setListaData(resultadoAPI)
+  });
+  useEffect(() => {
     setSubTotal(mockList.reduce((acc, cur) => acc + cur.price, 0));
   }, [listData]);
   return (
     <Layout>
       <div className="flex flex-col flex-1">
-        <div>Cesta</div>
-        <h2 className="w-screen self-start">Itens</h2>
+        <h1 className="self-center p-6 text-xl ">Cesta</h1>
+        <h2 className="w-screen self-start text-medium text-lg p-6">Itens</h2>
         <section className="w-screen border-2 border-black flex flex-col flex-5">
           {mockList.map((item: any) => (
             <div key={item.id} className="flex justify-between px-10">
@@ -34,7 +38,7 @@ const Basket = () => {
           ))}
         </section>
         <button
-          className="self-center"
+          className="self-center bg-red-400 p-3 m-4"
           onClick={() => {
             history.goBack();
           }}
@@ -63,7 +67,9 @@ const Basket = () => {
             </span>
           </div>
         </section>
-        <button>Finalizar Pedido</button>
+        <button className="self-center bg-red-400 p-3 m-4">
+          Finalizar Pedido
+        </button>
       </div>
     </Layout>
   );
