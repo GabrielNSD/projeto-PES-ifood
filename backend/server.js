@@ -10,9 +10,26 @@ app.get("/restaurantes", (req, res) => {
   return res.send(response);
 });
 
+app.get("/cesta/:idcesta", (req, res) => {
+  const { idcesta } = req.params;
+  const response = cesta.getCesta(idcesta);
+  console.log(response);
+  return res.send(response);
+});
+
 app.get("/produtos/:id", (req, res) => {
   const { id } = req.params;
   const response = produtos.getProdutos(id);
+  return res.send(response);
+});
+
+
+app.get("/cesta/add/:idcesta/:idrest/:idprod", (req, res) => {
+  const { idrest } = req.params;
+  const { idprod } = req.params;
+  const { idcesta } = req.params;
+  const response = cesta.addProduto(idcesta,idrest,idprod);
+  console.log(response);
   return res.send(response);
 });
 

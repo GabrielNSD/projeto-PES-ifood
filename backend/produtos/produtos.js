@@ -89,6 +89,15 @@ const getProdutos = (id) => {
   return teste;
 };
 
+const getProdutoid = (id,idpro) => {
+       const result=getProdutos(id);
+       const floatId = parseFloat(idpro);
+       const teste = result.filter((item) => item.id === floatId);
+       //console.log(teste);
+       return teste;
+     };
+
 module.exports = {
   getProdutos: getProdutos,
+  getProdutoid: getProdutoid,
 };
