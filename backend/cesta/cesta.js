@@ -1,68 +1,81 @@
-//criar um array de cestas tal qual o de produtos
+//criar um array de cestas tal qual o de produtos - OK
 
-//listar produtos na cesta
+//listar produtos na cesta - OK
 
-//adicionar produto
+//adicionar produto - OK
 
 //remover produtos
 
 //remover todos os produtos
 
-const produto = require("C:/Users/User/IdeaProjects/projeto-PES-ifood/backend/produtos/produtos.js");
+const fs = require("fs");
+const cwd = process.cwd();
+const produto = require("../produtos/produtos");
 
-
-
-
- class cesta{
-
-  constructor(idC,idClient,objarray){
+class Cesta {
+  constructor(idC, idClient, objarray) {
     this.idCesta = idC;
-    this.idCliente=idClient;
-    this.produtos = objarray || [];
-
+    this.idCliente = idClient;
+    this.produtos = []; //objarray || [];
+  }
 }
-
-};
-ola = new cesta(0,0,produto.getProdutoid(2,1))
-listcestas = [ola];
+//const cestas = JSON.parse(cestas);
+ola = new Cesta(0, 0, produto.getProdutoid(2, 1));
+//listcestas = [ola];
 
 getCesta = (idClient) => {
+  let listcestas = require("./cestas.json");
 
+  //console.log(listcestas);
 
-    for (let i=0;i<listcestas.length;i++){
-
-        if (listcestas[i].idCliente==idClient){
-          //  console.log(listcestas[i].produtos);
-            return listcestas[i].produtos;
-        }
+  for (let i = 0; i < listcestas.length; i++) {
+    if (listcestas[i].idCliente == idClient) {
+      //  console.log(listcestas[i].produtos);
+      return listcestas[i].produtos;
     }
+  }
 
-    //novaCesta= new cesta(listcestas.lenght,idClient)
-    novaCesta= new cesta(idClient,idClient);
-    listcestas.push(novaCesta);
-    //console.log(listcestas.length);
-    return listcestas[listcestas.length-1].produtos;
-}
+  //novaCesta= new cesta(listcestas.lenght,idClient)
+  novaCesta = new Cesta(parseFloat(idClient), parseFloat(idClient));
+  listcestas.push(novaCesta);
+  //console.log(listcestas.length);
 
- addProduto = (idClient, idrest,idPro)=> {
-    const cest=getCesta(idClient);
-    const prodAdc = produto.getProdutoid(idrest,idPro);
-    cest.produtos=prodAdc;
-    //console.log(listcestas[idClient].produtos);
-    return listcestas[idClient].produtos;
+  fs.writeFile(
+    cwd + "/cesta/cestas.json",
+    JSON.stringify(listcestas, null, 4),
+    (err) => {
+      if (err) {
+        console.log("erro ao gravar cestas ", err);
+      }
+    }
+  );
 
-}
-
-
-
-
-
-
-module.exports = {
- getCesta: getCesta,
- addProduto: addProduto,
+  return listcestas[listcestas.length - 1].produtos;
 };
 
+addProduto = (idClient, idrest, idPro, quantidade) => {
+  const cest = getCesta(idClient);
+  const prodAdc = produto.getProdutoid(idrest, idPro);
+  console.log("prodadc ", prodAdc);
+  //cest.produtos = prodAdc;
+  cest.push({ ...prodAdc, quantidade: parseFloat(quantidade) });
+  //console.log("cest ", cest);
+  //console.log(cest.produtos);
 
+  const cestas = require("./cestas.json");
+  //console.log("AAAA ", typeof cestas[0]);
+  fs.writeFile(
+    cwd + "/cesta/cestas.json",
+    JSON.stringify(cestas, null, 4),
+    (err) => {
+      if (err) {
+        console.log("erro ao gravar cestas ", err);
+      }
+    }
+  );
+};
 
-
+module.exports = {
+  getCesta: getCesta,
+  addProduto: addProduto,
+};

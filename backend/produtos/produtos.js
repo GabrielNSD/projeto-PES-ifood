@@ -82,20 +82,23 @@ const Produtos = [
   },
 ];
 
-const getProdutos = (id) => {
-  const floatId = parseFloat(id);
-  const teste = Produtos.filter((item) => item.idRestaurante === floatId);
-  //console.log(teste);
-  return teste;
+//const Produtos = require("./produtos.json");
+
+const getProdutos = (restauranteId) => {
+  //retorna todos os produtos de um restaurante
+  const floatId = parseFloat(restauranteId);
+  const result = Produtos.filter((item) => item.idRestaurante === floatId);
+  //console.log(result);
+  return result;
 };
 
-const getProdutoid = (id,idpro) => {
-       const result=getProdutos(id);
-       const floatId = parseFloat(idpro);
-       const teste = result.filter((item) => item.id === floatId);
-       //console.log(teste);
-       return teste;
-     };
+const getProdutoid = (id, idpro) => {
+  const result = getProdutos(id);
+  const floatId = parseFloat(idpro);
+  const teste = result.filter((item) => item.id === floatId);
+  //console.log(teste[0]);
+  return teste[0];
+};
 
 module.exports = {
   getProdutos: getProdutos,
