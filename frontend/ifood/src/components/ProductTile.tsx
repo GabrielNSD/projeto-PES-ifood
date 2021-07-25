@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 const mockProduct = {
   name: "Produto A",
@@ -10,8 +10,20 @@ const mockProduct = {
 };
 
 const ProductTile = (props: any) => {
+  const [cont, setCont] = useState(1);
+
+  const addOneButtonHandler = () => {
+    setCont((prevState) => prevState + 1);
+  };
+
+  const removeOneButtonHandler = () => {
+    setCont((prevState) => prevState - 1);
+  };
+
+  console.log(cont);
+
   return (
-    <div className="flex border-2 border-black w-full m-2">
+    <div className="flex border-2 border-black w-full mb-4">
       <div className="border-2 border-red-200 w-2/5 m-2 self-center">
         <img src={mockProduct.imageUrl} alt="imagem" className="h-15 w-15" />
       </div>
@@ -21,9 +33,20 @@ const ProductTile = (props: any) => {
         <div className="flex justify-between">
           <p className="text-sm">R${mockProduct.price}</p>
           <div className="flex items-center">
-            <button className="border-2 bg-red-400 self-center">-</button>
-            <p>1</p>
-            <button className="border-2 bg-red-400 self-center">+</button>
+            <button
+              className="border-2 bg-red-400 self-center"
+              disabled={cont === 1 ? true : false}
+              onClick={removeOneButtonHandler}
+            >
+              -
+            </button>
+            <p>{cont}</p>
+            <button
+              className="border-2 bg-red-400 self-center"
+              onClick={addOneButtonHandler}
+            >
+              +
+            </button>
             <button>Adicionar</button>
           </div>
         </div>

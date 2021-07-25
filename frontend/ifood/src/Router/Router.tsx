@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 
 import Home from "../pages/Home";
 import Restaurant from "../pages/Restaurant";
+import Basket from "../pages/Basket";
 
 const RouterComponent = () => {
   return (
@@ -14,6 +15,9 @@ const RouterComponent = () => {
         path="/restaurante/:id"
         render={(props: any) => <Restaurant {...props} />}
       />
+      <Route exact path="/cesta">
+        <Basket />
+      </Route>
     </Router>
   );
 };

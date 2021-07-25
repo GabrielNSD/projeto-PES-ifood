@@ -27,7 +27,7 @@ const Restaurant = (props: any) => {
               history.goBack();
             }}
           >
-            Voltar
+            <img alt="voltar" src="/images/backButton.png" className="ml-4" />
           </button>
         </div>
 
@@ -43,10 +43,12 @@ const Restaurant = (props: any) => {
             </div>
           </div>
         </div>
-        <ProductTile />
-        <ProductTile />
-        <ProductTile />
-        <ProductTile />
+        <section className="p-4">
+          <ProductTile />
+          <ProductTile />
+          <ProductTile />
+          <ProductTile />
+        </section>
       </Layout>
     </>
   );
