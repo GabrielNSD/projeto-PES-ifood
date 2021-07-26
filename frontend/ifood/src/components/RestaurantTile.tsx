@@ -19,7 +19,6 @@ const RestaurantTile = (props: RestaurantTileProps) => {
   const clickHandler = () => {
     dispatch(marketFunctions.chooseMarket(props));
     histoy.push(`/restaurante/${props.id}`);
-    
   };
 
   return (

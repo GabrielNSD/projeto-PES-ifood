@@ -81,9 +81,9 @@ const getProdutos = (restauranteId) => {
 const getProdutoid = (id, idpro) => {
   const result = getProdutos(id);
   const floatId = parseFloat(idpro);
-  const teste = result.filter((item) => item.id === floatId);
-  //console.log(teste[0]);
-  return teste[0];
+  const response = result.filter((item) => item.id === floatId);
+  //console.log(response[0]);
+  return response[0];
 };
 
 module.exports = {
