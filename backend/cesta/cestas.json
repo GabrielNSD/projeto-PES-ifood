@@ -1,0 +1,51 @@
+[
+  {
+    "idCesta": 2,
+    "idCliente": 2,
+    "produtos": [1, 2, 3]
+  },
+  {
+    "idCesta": 3,
+    "idCliente": 3,
+    "produtos": []
+  },
+  {
+    "idCesta": 1,
+    "idCliente": 1,
+    "produtos": []
+  },
+  {
+    "idCesta": 2,
+    "idCliente": 2,
+    "produtos": []
+  },
+  {
+    "idCesta": 0,
+    "idCliente": 0,
+    "produtos": []
+  },
+  {
+    "idCesta": 4,
+    "idCliente": 4,
+    "produtos": []
+  },
+  {
+    "idCesta": 5,
+    "idCliente": 5,
+    "produtos": []
+  },
+  {
+    "idCesta": 6,
+    "idCliente": 6,
+    "produtos": []
+  },
+  {
+    "idCesta": null,
+    "idCliente": null,
+    "produtos": [
+      {
+        "quantidade": null
+      }
+    ]
+  }
+]
