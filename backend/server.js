@@ -1,14 +1,17 @@
 const express = require("express");
+const cors = require("cors");
 const cesta = require("./cesta/cesta");
 const restaurantes = require("./restaurantes/restaurantes");
 const produtos = require("./produtos/produtos");
 
 const app = express();
 app.use(express.json());
+app.use(cors());
 
 app.get("/restaurantes", (req, res) => {
-  const response = restaurantes.getRestaurantes();
-  return res.send(response);
+  //const response = restaurantes.getRestaurantes();
+  restaurantes.getRestaurantes(req, res);
+  //res.json(response);
 });
 
 app.get("/produtos/:id", (req, res) => {

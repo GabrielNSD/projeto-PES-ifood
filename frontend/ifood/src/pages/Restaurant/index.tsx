@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 
@@ -10,16 +10,27 @@ const url =
 
 const Restaurant = (props: any) => {
   const marketData = useSelector((state: any) => state.market);
+  const [products, setProducts] = useState<any[]>([]);
   const history = useHistory();
   const { id } = props.match.params;
   console.log(id);
   console.log(marketData);
 
+  const apiCall = async (link: string) => {
+    const res = await fetch(link);
+    const data = await res.json();
+    setProducts(data);
+  };
+
+  useEffect(() => {
+    apiCall(`http://localhost:5000/produtos/${id}`);
+  }, []);
+
   return (
     <>
       <Layout>
         <div
-          className="bg-cover w-full bg-center h-20 bg-no-repeat items-center flex"
+          className="bg-cover w-full bg-center h-10 bg-no-repeat items-center flex"
           style={{ backgroundImage: `url(${url})` }}
         >
           <button
@@ -44,10 +55,12 @@ const Restaurant = (props: any) => {
           </div>
         </div>
         <section className="p-4">
+          {products.map((item: any) => (
+            <ProductTile data={item} idRest={id} />
+          ))}
+          {/* <ProductTile />
           <ProductTile />
-          <ProductTile />
-          <ProductTile />
-          <ProductTile />
+          <ProductTile /> */}
         </section>
       </Layout>
     </>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import Layout from "../../components/Layout";
 import RestaurantTile from "../../components/RestaurantTile";
@@ -11,6 +11,19 @@ const mockRestaurants = [
 ];
 
 const Home = () => {
+  const [restaurants, setRestaurants] = useState<any[]>(mockRestaurants);
+
+  const apiCall = async (link: string) => {
+    const res = await fetch(link);
+    const data = await res.json();
+    setRestaurants(data);
+  };
+
+  useEffect(() => {
+    apiCall("http://localhost:5000/restaurantes");
+  }, []);
+
+  console.log(restaurants);
   return (
     <Layout>
       <>
@@ -30,7 +43,7 @@ const Home = () => {
           </div>
           <div className="px-4 pb-4">ordenar</div>
           <section className="self-start w-4/5 m-4">
-            {mockRestaurants.map((item: any) => (
+            {restaurants.map((item: any) => (
               <RestaurantTile
                 key={item.id}
                 name={item.name}

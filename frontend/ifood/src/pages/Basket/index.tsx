@@ -9,31 +9,47 @@ const mockList = [
 ];
 
 const Basket = () => {
-  const [listData, setListData] = useState(mockList);
+  const [listData, setListData] = useState<any[]>([]);
   const [subTotal, setSubTotal] = useState(0);
   const history = useHistory();
   const taxaDeEntrega = 5;
+  const userId = 1;
+
+  const apiCall = async (link: string) => {
+    const res = await fetch(link);
+    const data = await res.json();
+    setListData(data);
+  };
 
   useEffect(() => {
     //chama api
+    apiCall(`http://localhost:5000/cesta/${userId}`);
     //setListaData(resultadoAPI)
-  });
+  }, []);
+  console.log("CESTA ", listData);
   useEffect(() => {
-    setSubTotal(mockList.reduce((acc, cur) => acc + cur.price, 0));
+    setSubTotal(listData.reduce((acc, cur) => acc + cur.preco, 0));
   }, [listData]);
   return (
     <Layout>
       <div className="flex flex-col flex-1">
         <h1 className="self-center p-6 text-xl ">Cesta</h1>
         <h2 className="w-screen self-start text-medium text-lg p-6">Itens</h2>
-        <section className="w-screen border-2 border-black flex flex-col flex-5">
-          {mockList.map((item: any) => (
+        <section className="w-screen flex flex-col flex-5">
+          {listData.map((item: any) => (
             <div key={item.id} className="flex justify-between px-10">
               <div>
-                <h2>{item.name}</h2>
-                <p>{item.price}</p>
+                <div className="flex">
+                  <span className="px-2">{item.quantidade}x</span>
+                  <h2>{item.nome}</h2>
+                </div>
+                <p className="px-2">
+                  R${item.preco.toFixed(2).toString().replace(".", ",")}
+                </p>
               </div>
-              <div>Image</div>
+              <div>
+                <img alt="produto" src={item.imagem} className="h-10" />
+              </div>
             </div>
           ))}
         </section>

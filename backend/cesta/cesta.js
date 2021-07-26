@@ -56,12 +56,16 @@ const getCesta = (idClient) => {
 const addProduto = (req, res) => {
   //const { id } = req.params;
   //console.log(req.body);
-  const { idClient, idrest, idPro, quantidade } = req.body;
+  const { idClient, idRest, idPro, quantidade } = req.body;
   const cest = getCesta(idClient);
-  const prodAdc = produto.getProdutoid(idrest, idPro);
+  const prodAdc = produto.getProdutoid(idRest, idPro);
   //console.log("prodadc ", prodAdc);
   //cest.produtos = prodAdc;
-  cest.push({ ...prodAdc, quantidade: parseFloat(quantidade) });
+  cest.push({
+    ...prodAdc,
+    quantidade: parseFloat(quantidade),
+    preco: prodAdc.preco * parseFloat(quantidade),
+  });
   //console.log("cest ", cest);
   //console.log(cest.produtos);
 
