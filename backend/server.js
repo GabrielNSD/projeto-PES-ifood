@@ -13,9 +13,10 @@ app.get("/restaurantes", (req, res) => {
 });
 
 app.get("/produtos/:id", (req, res) => {
-  const { id } = req.params;
+  /* const { id } = req.params;
   const response = produtos.getProdutos(id);
-  return res.send(response);
+  return res.send(response); */
+  produtos.getProdutos(req, res);
 });
 
 app.get("/cesta/:idcesta", (req, res) => {

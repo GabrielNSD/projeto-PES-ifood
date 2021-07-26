@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">60.87% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>14/23</span>
+                <span class='fraction'>21/21</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">25% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/4</span>
+                <span class='fraction'>4/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">60.87% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>14/23</span>
+                <span class='fraction'>21/21</span>
             </div>
         
             
@@ -55,7 +55,7 @@
             Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
         </p>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -90,7 +90,8 @@
 <a name='L31'></a><a href='#L31'>31</a>
 <a name='L32'></a><a href='#L32'>32</a>
 <a name='L33'></a><a href='#L33'>33</a>
-<a name='L34'></a><a href='#L34'>34</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L34'></a><a href='#L34'>34</a>
+<a name='L35'></a><a href='#L35'>35</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -105,21 +106,22 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
@@ -137,22 +139,23 @@ app.get("/restaurantes", (req, res) =&gt; {
   restaurantes.getRestaurantes(req, res);
 });
 &nbsp;
-app.get("/produtos/:id", <span class="fstat-no" title="function not covered" >(r</span>eq, res) =&gt; {
-  const { id } = <span class="cstat-no" title="statement not covered" >req.params;</span>
-  const response = <span class="cstat-no" title="statement not covered" >produtos.getProdutos(id);</span>
-<span class="cstat-no" title="statement not covered" >  return res.send(response);</span>
+app.get("/produtos/:id", (req, res) =&gt; {
+  /* const { id } = req.params;
+  const response = produtos.getProdutos(id);
+  return res.send(response); */
+  produtos.getProdutos(req, res);
 });
 &nbsp;
-app.get("/cesta/:idcesta", <span class="fstat-no" title="function not covered" >(r</span>eq, res) =&gt; {
-  const { idcesta } = <span class="cstat-no" title="statement not covered" >req.params;</span>
-  const response = <span class="cstat-no" title="statement not covered" >cesta.getCesta(idcesta);</span>
-<span class="cstat-no" title="statement not covered" >  console.log(response);</span>
-<span class="cstat-no" title="statement not covered" >  return res.send(response);</span>
+app.get("/cesta/:idcesta", (req, res) =&gt; {
+  const { idcesta } = req.params;
+  const response = cesta.getCesta(idcesta);
+  console.log(response);
+  return res.send(response);
 });
 &nbsp;
-app.put("/cesta", <span class="fstat-no" title="function not covered" >(r</span>eq, res) =&gt; {
-<span class="cstat-no" title="statement not covered" >  console.log(req.body);</span>
-<span class="cstat-no" title="statement not covered" >  cesta.addProduto(req, res);</span>
+app.put("/cesta", (req, res) =&gt; {
+  console.log(req.body);
+  cesta.addProduto(req, res);
 });
 &nbsp;
 module.exports = app;
@@ -163,7 +166,7 @@ module.exports = app;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Mon Jul 26 2021 01:43:56 GMT-0300 (Brasilia Standard Time)
+                at Mon Jul 26 2021 12:06:56 GMT-0300 (Brasilia Standard Time)
             </div>
         </div>
         <script src="../prettify.js"></script>

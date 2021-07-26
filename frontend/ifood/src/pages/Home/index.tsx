@@ -50,23 +50,22 @@ const Home = () => {
         tempArray.sort((a: any, b: any) => b.rating - a.rating)
       );
     } else if (selection === "class") {
-      setFilteredRestaurants((filteredRestaurants) =>
-        filteredRestaurants.sort(
-          (a: any, b: any) => b.deliveryTime - a.deliveryTime
-        )
+      setFilteredRestaurants(mockRestaurants);
+      setFilteredRestaurants(
+        tempArray.sort((a: any, b: any) => a.deliveryTime - b.deliveryTime)
       );
     } else {
-      setFilteredRestaurants((filteredRestaurants) =>
-        filteredRestaurants.sort((a, b) => a.name.localeCompare(b.name))
+      setFilteredRestaurants(
+        restaurants.sort((a, b) => a.name.localeCompare(b.name))
       );
     }
-  }, [filteredRestaurants, selection]);
+  }, [filteredRestaurants, selection, restaurants]);
 
   useEffect(() => {
     apiCall("http://localhost:5000/restaurantes");
   }, []);
 
-  console.log(filteredRestaurants);
+  //console.log(filteredRestaurants);
   return (
     <Layout>
       <>
