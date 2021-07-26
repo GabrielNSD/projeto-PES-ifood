@@ -38,5 +38,14 @@
     "idCesta": 6,
     "idCliente": 6,
     "produtos": []
+  },
+  {
+    "idCesta": null,
+    "idCliente": null,
+    "produtos": [
+      {
+        "quantidade": null
+      }
+    ]
   }
 ]

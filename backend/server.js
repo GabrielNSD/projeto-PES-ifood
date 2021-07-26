@@ -4,6 +4,7 @@ const restaurantes = require("./restaurantes/restaurantes");
 const produtos = require("./produtos/produtos");
 
 const app = express();
+app.use(express.json());
 
 app.get("/restaurantes", (req, res) => {
   const response = restaurantes.getRestaurantes();
@@ -23,17 +24,22 @@ app.get("/cesta/:idcesta", (req, res) => {
   return res.send(response);
 });
 
-app.get("/cesta/add/:idcesta/:idrest/:idprod/:qtd", (req, res) => {
+/* app.get("/cesta/add/:idcesta/:idrest/:idprod/:qtd", (req, res) => {
   const { idrest } = req.params;
   const { idprod } = req.params;
   const { idcesta } = req.params;
   const { qtd } = req.params;
-  const response = cesta.addProduto(idcesta, idrest, idprod, qtd);
+  const response = cesta.addProdutoOld(idcesta, idrest, idprod, qtd);
   console.log(response);
   return res.send(response);
+}); */
+
+app.put("/cesta", (req, res) => {
+  console.log(req.body);
+  cesta.addProduto(req, res);
 });
 
-app.get("/", (req, res) => {
+/* app.get("/", (req, res) => {
   const response = produtos.getProdutos(2);
   return res.send("get");
 });
@@ -48,7 +54,7 @@ app.put("/", (req, res) => {
 
 app.delete("/", (req, res) => {
   return res.send("delete");
-});
+}); */
 
 const PORT = 5000;
 

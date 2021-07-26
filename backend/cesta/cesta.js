@@ -23,7 +23,7 @@ class Cesta {
 ola = new Cesta(0, 0, produto.getProdutoid(2, 1));
 //listcestas = [ola];
 
-getCesta = (idClient) => {
+const getCesta = (idClient) => {
   let listcestas = require("./cestas.json");
 
   //console.log(listcestas);
@@ -53,10 +53,36 @@ getCesta = (idClient) => {
   return listcestas[listcestas.length - 1].produtos;
 };
 
-addProduto = (idClient, idrest, idPro, quantidade) => {
+const addProduto = (req, res) => {
+  //const { id } = req.params;
+  //console.log(req.body);
+  const { idClient, idrest, idPro, quantidade } = req.body;
   const cest = getCesta(idClient);
   const prodAdc = produto.getProdutoid(idrest, idPro);
-  console.log("prodadc ", prodAdc);
+  //console.log("prodadc ", prodAdc);
+  //cest.produtos = prodAdc;
+  cest.push({ ...prodAdc, quantidade: parseFloat(quantidade) });
+  //console.log("cest ", cest);
+  //console.log(cest.produtos);
+
+  const cestas = require("./cestas.json");
+  //console.log("AAAA ", typeof cestas[0]);
+  fs.writeFile(
+    cwd + "/cesta/cestas.json",
+    JSON.stringify(cestas, null, 4),
+    (err) => {
+      if (err) {
+        console.log("erro ao gravar cestas ", err);
+        res.status(400).json("erro ao gravar cestas");
+      }
+    }
+  );
+};
+
+/* const addProdutoOld = (idClient, idrest, idPro, quantidade) => {
+  const cest = getCesta(idClient);
+  const prodAdc = produto.getProdutoid(idrest, idPro);
+  //console.log("prodadc ", prodAdc);
   //cest.produtos = prodAdc;
   cest.push({ ...prodAdc, quantidade: parseFloat(quantidade) });
   //console.log("cest ", cest);
@@ -74,8 +100,9 @@ addProduto = (idClient, idrest, idPro, quantidade) => {
     }
   );
 };
-
+ */
 module.exports = {
   getCesta: getCesta,
   addProduto: addProduto,
+  //addProdutoOld: addProdutoOld,
 };
