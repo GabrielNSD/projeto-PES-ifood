@@ -24,7 +24,7 @@ const Restaurant = (props: any) => {
 
   useEffect(() => {
     apiCall(`http://localhost:5000/produtos/${id}`);
-  }, []);
+  }, [id]);
 
   return (
     <>

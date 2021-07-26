@@ -3,10 +3,10 @@ import { useHistory } from "react-router-dom";
 
 import Layout from "../../components/Layout";
 
-const mockList = [
+/* const mockList = [
   { name: "Produto A", price: 5, id: 1, imageUrl: "" },
   { name: "Produto B", price: 6, id: 2, imageUrl: "" },
-];
+]; */
 
 const Basket = () => {
   const [listData, setListData] = useState<any[]>([]);
